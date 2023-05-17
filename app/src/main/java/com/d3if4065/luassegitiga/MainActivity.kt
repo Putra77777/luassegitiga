@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.d3if4065.luassegitiga.databinding.ActivityMainBinding
 import com.d3if4065.luassegitiga.model.hasilLuas
+import com.d3if4065.luassegitiga.ui.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this)[MainViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +40,11 @@ class MainActivity : AppCompatActivity() {
         val hasil = 0.5 * Alas.toFloat() * Tinggi.toFloat()
         binding.hasilLuas.text = getString(R.string.hasilLuas_X, hasil)
 
-        val result = luasHitung(
+        val result = viewModel.luasHitung(
             Alas.toFloat(),
             Tinggi.toFloat()
         )
         showResult(result)
-    }
-
-    private fun luasHitung(Alas:Float, Tinggi:Float): hasilLuas {
-        val diameter = 0.5
-        val luas = diameter * Alas * Tinggi
-        return hasilLuas(luas)
     }
 
     private fun showResult(result:hasilLuas){
