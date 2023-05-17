@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.d3if4065.luassegitiga.databinding.ActivityMainBinding
+import com.d3if4065.luassegitiga.model.hasilLuas
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -34,7 +35,21 @@ class MainActivity : AppCompatActivity() {
         val hasil = 0.5 * Alas.toFloat() * Tinggi.toFloat()
         binding.hasilLuas.text = getString(R.string.hasilLuas_X, hasil)
 
+        val result = luasHitung(
+            Alas.toFloat(),
+            Tinggi.toFloat()
+        )
+        showResult(result)
+    }
 
+    private fun luasHitung(Alas:Float, Tinggi:Float): hasilLuas {
+        val diameter = 0.5
+        val luas = diameter * Alas * Tinggi
+        return hasilLuas(luas)
+    }
+
+    private fun showResult(result:hasilLuas){
+        binding.hasilLuas.text = getString(R.string.hasilLuas_X, result.luas)
     }
 
     private fun resetButton(){
