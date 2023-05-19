@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.d3if4065.luassegitiga.R
 import com.d3if4065.luassegitiga.databinding.FragmentHitungBinding
-import com.d3if4065.luassegitiga.model.hasilLuas
+import com.d3if4065.luassegitiga.model.HasilLuas
 
-class hitungFragment : Fragment() {
+class HitungFragment : Fragment() {
     private lateinit var binding: FragmentHitungBinding
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
@@ -24,42 +24,45 @@ class hitungFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.buttonHitung.setOnClickListener { HitungLuas()}
         binding.buttonReset.setOnClickListener { resetButton()}
-        return binding.root
+        viewModel.getHasilLuas().observe(requireActivity()) { showResult(it) }
     }
 
     private fun HitungLuas() {
 
-        val Alas = binding.alasInputNumber.text.toString()
-        if (TextUtils.isEmpty(Alas)) {
+        val alas = binding.alasInputNumber.text.toString()
+        if (TextUtils.isEmpty(alas)) {
             Toast.makeText(context,"Alas tidak boleh kosong", Toast.LENGTH_LONG).show()
             return
         }
-        val Tinggi = binding.tinggiInputNumber.text.toString()
-        if (TextUtils.isEmpty(Tinggi)) {
+        val tinggi = binding.tinggiInputNumber.text.toString()
+        if (TextUtils.isEmpty(tinggi)) {
             Toast.makeText(context,"Tinggi tidak boleh kosong", Toast.LENGTH_LONG).show()
             return
         }
 
-        val result = viewModel.luasHitung(
-            Alas.toFloat(),
-            Tinggi.toFloat()
+        viewModel.luasHitung(
+            alas.toDouble(),
+            tinggi.toDouble()
         )
-
-        showResult(result)
 
     }
 
-    private fun showResult (result:hasilLuas){
-        binding.hasilLuas.text = getString(R.string.hasilLuas_X, result.luas)
+    private fun showResult (result:HasilLuas?){
+        if (result == null ) return
+        binding.hasilLuas.text = result.hasil.toString()
     }
 
     private fun resetButton(){
 
-        binding.alasInputNumber.setText("")
-        binding.tinggiInputNumber.setText("")
-        binding.hasilLuas.setText("")
+        binding.alasInputNumber.text!!.clear()
+        binding.tinggiInputNumber.text!!.clear()
+        binding.hasilLuas.text = ""
     }
 }
 
