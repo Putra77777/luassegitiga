@@ -61,10 +61,10 @@
             android:id="@+id/buttonHitung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="252dp"
+            android:layout_marginTop="312dp"
             android:text="@string/buttonHitung"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintHorizontal_bias="0.087"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,6 +103,18 @@
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/historyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:text="@string/historyButton"
+            app:layout_constraintBottom_toBottomOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.575"
+            app:layout_constraintStart_toEndOf="@+id/buttonReset" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
