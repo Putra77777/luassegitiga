@@ -28,10 +28,10 @@ class HitungFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.buttonHitung.setOnClickListener { HitungLuas()}
-        binding.buttonReset.setOnClickListener { resetButton()}
+        binding.buttonHitung.setOnClickListener { HitungLuas() }
+        binding.buttonReset.setOnClickListener { resetButton() }
         viewModel.getHasilLuas().observe(requireActivity()) { showResult(it) }
-        binding.historyButton.setOnClickListener{
+        binding.historyButton.setOnClickListener {
             it.findNavController().navigate(
                 R.id.action_hitungFragment_to_historyFragment
             )
@@ -45,10 +45,12 @@ class HitungFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.option_menu, menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_about) {
             findNavController().navigate(
-                R.id.action_hitungFragment_to_aboutFragment)
+                R.id.action_hitungFragment_to_aboutFragment
+            )
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -58,12 +60,12 @@ class HitungFragment : Fragment() {
 
         val alas = binding.alasInputNumber.text.toString()
         if (TextUtils.isEmpty(alas)) {
-            Toast.makeText(context,"Alas tidak boleh kosong", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Alas tidak boleh kosong", Toast.LENGTH_LONG).show()
             return
         }
         val tinggi = binding.tinggiInputNumber.text.toString()
         if (TextUtils.isEmpty(tinggi)) {
-            Toast.makeText(context,"Tinggi tidak boleh kosong", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Tinggi tidak boleh kosong", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -74,12 +76,12 @@ class HitungFragment : Fragment() {
 
     }
 
-    private fun showResult (result:HasilLuas?){
-        if (result == null ) return
+    private fun showResult(result: HasilLuas?) {
+        if (result == null) return
         binding.hasilLuas.text = result.hasil.toString()
     }
 
-    private fun resetButton(){
+    private fun resetButton() {
 
         binding.alasInputNumber.text!!.clear()
         binding.tinggiInputNumber.text!!.clear()
