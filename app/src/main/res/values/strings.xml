@@ -15,4 +15,14 @@
     <string name="copyright">Aplikasi menghitung luas segitiga Putra Christian Bastanta - 6706204065</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="historyButton">History</string>
+    <string name="title_notifications">Tentang Aplikasi</string>
+    <string name="title_dashboard">Glosarium</string>
+    <string name="title_home">Home</string>
+    <string name="shareapk">Share LuasSegitiga</string>
+    <string name="buttonShare">SHARE</string>
+    <string name="message">%1$s diklik!</string>
+    <string name="koneksi_error">Koneksi Error</string>
+    <string name="ButtonMulaiMenghitung">Mulai Menghitung</string>
+    <string name="buttonGlosarium">Glosarium</string>
+    <string name="title_activity_menu">Luas Segitiga</string>
 </resources>
